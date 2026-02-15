@@ -1,0 +1,55 @@
+{
+  "name": "stoktakip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "concurrently \"vite\" \"wait-on tcp:3000 && electron .\"",
+    "build": "vite build && electron-builder",
+    "build:css": "tailwindcss -i ./src/renderer/src/styles/index.css -o ./src/renderer/src/styles/output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.11",
+    "@vitejs/plugin-react": "^5.1.4",
+    "autoprefixer": "^10.4.24",
+    "concurrently": "^9.2.1",
+    "electron": "^40.4.1",
+    "electron-builder": "^26.7.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "vite": "^7.3.1",
+    "wait-on": "^9.0.4"
+  },
+  "build": {
+    "appId": "com.stoktakip.app",
+    "productName": "StokTakip",
+    "copyright": "Copyright © 2024 StokTakip",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "dist/**/*",
+      "src/main/**/*",
+      "package.json"
+    ]
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.13.0"
+  }
+}

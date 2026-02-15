@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fabrika Yönetim Sistemi - Yeni Rol Tanımla</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a227f",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121320",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900">
+<!-- Background Layer (User Authorization Page) -->
+<div class="relative flex h-screen w-full flex-col overflow-hidden filter blur-[2px] pointer-events-none select-none">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between border-b border-solid border-slate-200 bg-white px-10 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<span class="material-symbols-outlined text-3xl">factory</span>
+<h2 class="text-lg font-bold leading-tight tracking-tight">Fabrika Yönetim Sistemi</h2>
+</div>
+<div class="flex items-center gap-9">
+<a class="text-slate-600 text-sm font-medium" href="#">Dashboard</a>
+<a class="text-slate-600 text-sm font-medium" href="#">Üretim</a>
+<a class="text-slate-600 text-sm font-medium" href="#">Stok</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary" href="#">Yetkilendirme</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="bg-slate-100 rounded-full size-10 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500">person</span>
+</div>
+</div>
+</header>
+<main class="px-10 py-8 max-w-[1200px] mx-auto w-full">
+<div class="flex flex-wrap justify-between gap-3 mb-6">
+<div class="flex flex-col gap-1">
+<p class="text-slate-900 text-3xl font-black tracking-tight">Kullanıcı Yetkilendirme</p>
+<p class="text-slate-500 text-base font-normal">Sistemdeki kullanıcı rollerini ve izinlerini yönetin.</p>
+</div>
+<button class="bg-primary text-white rounded-lg px-6 h-12 font-bold flex items-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                        Yeni Rol Ekle
+                    </button>
+</div>
+<div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead class="bg-slate-50 border-b border-slate-200">
+<tr>
+<th class="px-6 py-4 text-sm font-semibold text-slate-700">Rol Adı</th>
+<th class="px-6 py-4 text-sm font-semibold text-slate-700">Açıklama</th>
+<th class="px-6 py-4 text-sm font-semibold text-slate-700">Kullanıcı Sayısı</th>
+<th class="px-6 py-4 text-sm font-semibold text-slate-700">Durum</th>
+<th class="px-6 py-4 text-sm font-semibold text-slate-700">İşlemler</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-600">
+<tr>
+<td class="px-6 py-4 font-medium text-slate-900">Yönetici</td>
+<td class="px-6 py-4 text-sm">Tüm sistem yetkileri</td>
+<td class="px-6 py-4 text-sm">4</td>
+<td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Aktif</span></td>
+<td class="px-6 py-4 text-primary font-bold cursor-pointer">Düzenle</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-medium text-slate-900">Operatör</td>
+<td class="px-6 py-4 text-sm">Üretim hattı giriş yetkisi</td>
+<td class="px-6 py-4 text-sm">12</td>
+<td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Aktif</span></td>
+<td class="px-6 py-4 text-primary font-bold cursor-pointer">Düzenle</td>
+</tr>
+</tbody>
+</table>
+</div>
+</main>
+</div>
+</div>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm px-4">
+<!-- Modal Container -->
+<div class="bg-white w-full max-w-2xl rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+<!-- Modal Header -->
+<div class="px-8 py-6 border-b border-slate-100 flex items-center justify-between">
+<div>
+<h3 class="text-xl font-bold text-slate-900">Yeni Rol Tanımla</h3>
+<p class="text-sm text-slate-500">Sisteme yeni bir görev tanımı ve yetki seti ekleyin.</p>
+</div>
+<button class="text-slate-400 hover:text-slate-600 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Modal Content (Scrollable) -->
+<div class="p-8 overflow-y-auto space-y-8">
+<!-- General Info -->
+<div class="grid grid-cols-1 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700" for="role-name">Rol Adı</label>
+<input class="w-full h-11 px-4 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" id="role-name" placeholder="Örn: Kalite Kontrol Sorumlusu" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700" for="role-desc">Rol Açıklaması</label>
+<textarea class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all resize-none" id="role-desc" placeholder="Bu rolün görev ve sorumluluklarını kısaca açıklayın..." rows="2"></textarea>
+</div>
+</div>
+<!-- Permission Selection -->
+<div class="space-y-4">
+<h4 class="text-sm font-bold uppercase tracking-wider text-primary border-b border-primary/10 pb-2">Yetki Tanımlamaları</h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Category: Stok Yönetimi -->
+<div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-slate-400 text-lg">inventory_2</span>
+<span class="font-bold text-slate-800 text-sm">Stok Yönetimi</span>
+</div>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600 group-hover:text-slate-900">Görüntüle</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600 group-hover:text-slate-900">Düzenle</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600 group-hover:text-slate-900 text-red-600 font-medium">Sil</span>
+</label>
+</div>
+</div>
+<!-- Category: Sipariş Yönetimi -->
+<div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-slate-400 text-lg">shopping_cart</span>
+<span class="font-bold text-slate-800 text-sm">Sipariş Yönetimi</span>
+</div>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600 group-hover:text-slate-900">Oluştur</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600 group-hover:text-slate-900">Onayla</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600 group-hover:text-slate-900 text-red-600 font-medium">İptal Et</span>
+</label>
+</div>
+</div>
+<!-- Category: Müşteri ve Tedarikçi -->
+<div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-slate-400 text-lg">groups</span>
+<span class="font-bold text-slate-800 text-sm">Müşteri ve Tedarikçi</span>
+</div>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600 group-hover:text-slate-900">Ekle</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600 group-hover:text-slate-900">Düzenle</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600 group-hover:text-slate-900 text-red-600 font-medium">Sil</span>
+</label>
+</div>
+</div>
+<!-- Category: Raporlama -->
+<div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-slate-400 text-lg">bar_chart</span>
+<span class="font-bold text-slate-800 text-sm">Raporlama</span>
+</div>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600 group-hover:text-slate-900">Görüntüle</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600 group-hover:text-slate-900">Dışa Aktar</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="p-8 border-t border-slate-100 flex items-center justify-end gap-4 bg-slate-50">
+<button class="px-6 h-11 rounded-lg text-slate-600 font-bold hover:bg-slate-200 transition-colors">
+                    İptal
+                </button>
+<button class="px-8 h-11 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">save</span>
+                    Rolü Oluştur
+                </button>
+</div>
+</div>
+</div>
+</body></html>

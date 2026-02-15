@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Fabrika Stok Paneli</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="../output.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar Navigation -->
+        <aside
+            class="w-64 flex flex-col bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shrink-0">
+            <div class="p-6 flex flex-col h-full">
+                <!-- Brand Profile -->
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="bg-primary size-10 rounded-lg flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined">factory</span>
+                    </div>
+                    <div class="flex flex-col overflow-hidden">
+                        <h1 class="text-slate-900 dark:text-white text-base font-bold leading-tight truncate">
+                            Endüstriyel Merkez</h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs truncate">Tesis #402</p>
+                    </div>
+                </div>
+                <!-- Navigation Links -->
+                <nav class="flex flex-col gap-1 grow">
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary text-white" href="dashboard.html">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <p class="text-sm font-medium">Gösterge Paneli</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                        href="stok_listesi.html">
+                        <span class="material-symbols-outlined">inventory_2</span>
+                        <p class="text-sm font-medium">Stok Listesi</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                        href="sipariş_yönetimi.html">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                        <p class="text-sm font-medium">Siparişler</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                        href="ayarlar.html">
+                        <span class="material-symbols-outlined">settings</span>
+                        <p class="text-sm font-medium">Ayarlar</p>
+                    </a>
+                </nav>
+                <!-- Sidebar Footer Action -->
+                <div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800">
+                    <a href="yeni_ürün_ekle.html"
+                        class="w-full flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold transition-opacity hover:opacity-90">
+                        <span class="material-symbols-outlined text-sm">add_circle</span>
+                        <span>Yeni Sipariş</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col overflow-y-auto">
+            <!-- Header -->
+            <header
+                class="flex items-center justify-between bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-8 py-4 sticky top-0 z-10">
+                <div class="flex items-center gap-8">
+                    <h2 class="text-slate-900 dark:text-white text-xl font-bold tracking-tight">Gösterge Paneli</h2>
+                    <div class="relative w-64">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+                        <input
+                            class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none"
+                            placeholder="Stokta ara..." type="text" />
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined">notifications</span>
+                    </button>
+                    <button
+                        class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined">help_outline</span>
+                    </button>
+                    <div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-700 mx-2"></div>
+                    <div class="flex items-center gap-3">
+                        <img class="size-9 rounded-full object-cover" data-alt="User profile avatar"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-lh5lV-ynbSb47Cq1cUwtjQ8VL3Z8ZOAvkLg7IzRQB0OLXe_8ZzJdOAleTtrQE7smPsa3y4Gt3VYzWVlq9MCus-km54N2lOGxo8GrHlSDfylav_xwzZYWCRKt6QIaNltg-jRAiIo6oQm0CovRvP3vg_yMQPHhmaik760neQ7Qb6Zji9BVu42cfl0cY7ydwagsngn36aKY6bBNG7TymJIT7e_2RRl6GSAXhZFGH_puKV5WfdkIKXnmii5S7ywsEciwagllN7aBigzx" />
+                        <div class="hidden lg:block text-right">
+                            <p class="text-sm font-semibold dark:text-white">Alex Johnson</p>
+                            <p class="text-xs text-slate-500">Kat Sorumlusu</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="p-8 space-y-8 max-w-[1400px] mx-auto w-full">
+                <!-- Top-level KPIs -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div
+                        class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between mb-2">
+                            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Toplam Ürün</p>
+                            <span class="material-symbols-outlined text-primary">inventory_2</span>
+                        </div>
+                        <div class="flex items-end gap-2">
+                            <h3 class="text-2xl font-bold dark:text-white">12,450</h3>
+                            <span class="text-xs font-bold text-emerald-600 mb-1">+2.5%</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between mb-2">
+                            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Toplam Değer</p>
+                            <span class="material-symbols-outlined text-primary">payments</span>
+                        </div>
+                        <div class="flex items-end gap-2">
+                            <h3 class="text-2xl font-bold dark:text-white">$1.2M</h3>
+                            <span class="text-xs font-bold text-rose-600 mb-1">-0.8%</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between mb-2">
+                            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Düşük Stok Uyarısı</p>
+                            <span class="material-symbols-outlined text-rose-500">warning</span>
+                        </div>
+                        <div class="flex items-end gap-2">
+                            <h3 class="text-2xl font-bold dark:text-white text-rose-600">18</h3>
+                            <span class="text-xs font-bold text-rose-600 mb-1">+5%</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="flex items-center justify-between mb-2">
+                            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Bekleyen Siparişler</p>
+                            <span class="material-symbols-outlined text-primary">schedule</span>
+                        </div>
+                        <div class="flex items-end gap-2">
+                            <h3 class="text-2xl font-bold dark:text-white">42</h3>
+                            <span class="text-xs font-bold text-slate-400 mb-1">-12%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+                    <!-- Critical Stock Alerts Table -->
+                    <div class="xl:col-span-2 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-bold dark:text-white flex items-center gap-2">
+                                <span class="material-symbols-outlined text-rose-500">error_outline</span>
+                                Kritik Stok Uyarıları
+                            </h3>
+                            <a class="text-sm font-medium text-primary hover:underline" href="#">Tümünü Gör</a>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left">
+                                    <thead>
+                                        <tr
+                                            class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+                                            <th
+                                                class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                                                Ürün Adı</th>
+                                            <th
+                                                class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                                                SKU</th>
+                                            <th
+                                                class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-center">
+                                                Mevcut Seviye</th>
+                                            <th
+                                                class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-center">
+                                                Min Eşik</th>
+                                            <th
+                                                class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-right">
+                                                İşlem</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                                        <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                                            <td class="px-6 py-4 text-sm font-medium dark:text-white">Steel Bolts (M8)
+                                            </td>
+                                            <td class="px-6 py-4 text-sm text-slate-500 font-mono">SB-902</td>
+                                            <td class="px-6 py-4 text-sm text-center">
+                                                <span
+                                                    class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-700 font-bold">45
+                                                    units</span>
+                                            </td>
+                                            <td class="px-6 py-4 text-sm text-center text-slate-500">100 units</td>
+                                            <td class="px-6 py-4 text-right">
+                                                <button
+                                                    class="bg-primary text-white text-xs font-bold px-4 py-1.5 rounded-lg hover:opacity-90 transition-opacity">Sipariş
+                                                    Ver</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                                            <td class="px-6 py-4 text-sm font-medium dark:text-white">Hydraulic Oil AW46
+                                            </td>
+                                            <td class="px-6 py-4 text-sm text-slate-500 font-mono">HO-44</td>
+                                            <td class="px-6 py-4 text-sm text-center">
+                                                <span
+                                                    class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-700 font-bold">12
+                                                    L</span>
+                                            </td>
+                                            <td class="px-6 py-4 text-sm text-center text-slate-500">50 L</td>
+                                            <td class="px-6 py-4 text-right">
+                                                <button
+                                                    class="bg-primary text-white text-xs font-bold px-4 py-1.5 rounded-lg hover:opacity-90 transition-opacity">Order
+                                                    Now</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                                            <td class="px-6 py-4 text-sm font-medium dark:text-white">Copper Wiring
+                                                2.5mm</td>
+                                            <td class="px-6 py-4 text-sm text-slate-500 font-mono">CW-12</td>
+                                            <td class="px-6 py-4 text-sm text-center">
+                                                <span
+                                                    class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-700 font-bold">5
+                                                    rolls</span>
+                                            </td>
+                                            <td class="px-6 py-4 text-sm text-center text-slate-500">20 rolls</td>
+                                            <td class="px-6 py-4 text-right">
+                                                <button
+                                                    class="bg-primary text-white text-xs font-bold px-4 py-1.5 rounded-lg hover:opacity-90 transition-opacity">Order
+                                                    Now</button>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                                            <td class="px-6 py-4 text-sm font-medium dark:text-white">Industrial
+                                                Bearings 6204</td>
+                                            <td class="px-6 py-4 text-sm text-slate-500 font-mono">BR-220</td>
+                                            <td class="px-6 py-4 text-sm text-center">
+                                                <span
+                                                    class="px-2.5 py-1 rounded-full bg-rose-100 text-rose-700 font-bold">8
+                                                    units</span>
+                                            </td>
+                                            <td class="px-6 py-4 text-sm text-center text-slate-500">25 units</td>
+                                            <td class="px-6 py-4 text-right">
+                                                <button
+                                                    class="bg-primary text-white text-xs font-bold px-4 py-1.5 rounded-lg hover:opacity-90 transition-opacity">Order
+                                                    Now</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recent Transactions Summary -->
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-bold dark:text-white">Son İşlemler</h3>
+                            <button class="p-1 rounded-md text-slate-400 hover:text-primary">
+                                <span class="material-symbols-outlined text-lg">more_horiz</span>
+                            </button>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm space-y-6">
+                            <!-- Simple Chart Visualization -->
+                            <div class="h-40 flex items-end gap-3 pb-2 border-b border-slate-100 dark:border-slate-800">
+                                <div class="flex-1 bg-slate-100 dark:bg-slate-800 rounded-t h-1/2 relative group">
+                                    <div
+                                        class="absolute bottom-full left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity mb-2">
+                                        320</div>
+                                </div>
+                                <div class="flex-1 bg-primary/40 dark:bg-primary/20 rounded-t h-3/4 relative group">
+                                    <div
+                                        class="absolute bottom-full left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity mb-2">
+                                        540</div>
+                                </div>
+                                <div class="flex-1 bg-primary rounded-t h-full relative group">
+                                    <div
+                                        class="absolute bottom-full left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity mb-2">
+                                        720</div>
+                                </div>
+                                <div class="flex-1 bg-primary/60 dark:bg-primary/30 rounded-t h-[60%] relative group">
+                                    <div
+                                        class="absolute bottom-full left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity mb-2">
+                                        410</div>
+                                </div>
+                                <div class="flex-1 bg-slate-100 dark:bg-slate-800 rounded-t h-1/3 relative group">
+                                    <div
+                                        class="absolute bottom-full left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity mb-2">
+                                        210</div>
+                                </div>
+                            </div>
+                            <!-- Transaction List -->
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 p-2 rounded-lg">
+                                        <span class="material-symbols-outlined text-sm">add_circle</span>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-semibold dark:text-white truncate">Stok Girişi: Alüminyum
+                                            Kaplama</p>
+                                        <p class="text-xs text-slate-500">Bugün, 09:45</p>
+                                    </div>
+                                    <p class="text-sm font-bold text-emerald-600">+120</p>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-rose-100 dark:bg-rose-900/30 text-rose-600 p-2 rounded-lg">
+                                        <span class="material-symbols-outlined text-sm">remove_circle</span>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-semibold dark:text-white truncate">Kullanım: Montaj Hattı
+                                            4</p>
+                                        <p class="text-xs text-slate-500">Bugün, 08:30</p>
+                                    </div>
+                                    <p class="text-sm font-bold text-rose-600">-45</p>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 p-2 rounded-lg">
+                                        <span class="material-symbols-outlined text-sm">add_circle</span>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-semibold dark:text-white truncate">Stok Girişi: Çelik
+                                            Cıvatalar</p>
+                                        <p class="text-xs text-slate-500">Dün, 16:15</p>
+                                    </div>
+                                    <p class="text-sm font-bold text-emerald-600">+500</p>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-rose-100 dark:bg-rose-900/30 text-rose-600 p-2 rounded-lg">
+                                        <span class="material-symbols-outlined text-sm">remove_circle</span>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-semibold dark:text-white truncate">Kullanım: Bakım
+                                            Merkezi</p>
+                                        <p class="text-xs text-slate-500">Dün, 14:20</p>
+                                    </div>
+                                    <p class="text-sm font-bold text-rose-600">-12</p>
+                                </div>
+                            </div>
+                            <button
+                                class="w-full py-2 text-sm font-bold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 transition-colors">
+                                Tüm Kayıtları Gör
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

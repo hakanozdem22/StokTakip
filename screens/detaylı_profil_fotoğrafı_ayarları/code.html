@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ayarlar - Fabrika Yönetim Sistemi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a227f",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121320",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .sidebar-item-active { background-color: rgba(26, 34, 127, 0.1); color: #1a227f; border-left: 4px solid #1a227f; }
+        .custom-toggle:checked + .toggle-bg { background-color: #1a227f; }
+        .custom-toggle:checked + .toggle-bg .toggle-dot { transform: translateX(100%); }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col shrink-0">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">factory</span>
+</div>
+<div>
+<h1 class="text-primary font-bold text-sm leading-tight uppercase tracking-wider">Fabrika Yönetimi</h1>
+<p class="text-xs text-slate-500">Endüstriyel Sistem</p>
+</div>
+</div>
+<nav class="flex-1 px-3 space-y-1 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-sm font-medium">Envanter</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="text-sm font-medium">Siparişler</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-medium">Müşteri Yönetimi</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="text-sm font-medium">Tedarikçiler</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-sm font-medium">Raporlar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 sidebar-item-active rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Ayarlar</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3 p-2">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="User profile avatar of a manager" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2lthYevq7A47Yh7k-Mz16q1rxGXJMCTNKXJQpDLzZfA4Fl3MaI0B5uhqEXlXwtnVyZBsI6zIqeKOVBlIdxCjdqlSXQg5u6En9EUbvYdUKRW_A0-MX8N_o1v8C6rZkimosVmsjjQqVPWK6V-y4pZn3xjT-9Uq6exwCQefAiaDhkiD0M4sG7tqa6rvqcRtUF12fpISgxUDIlp6P8Cuovf6V4sk5z1eZcpcI8WWu_IF2vep1VF5IZynsfrxFsDdRyDZOE_J6M_dHqTgk"/>
+<div class="overflow-hidden">
+<p class="text-sm font-semibold truncate">Ahmet Yılmaz</p>
+<p class="text-xs text-slate-500 truncate">Fabrika Müdürü</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark p-8">
+<div class="max-w-4xl mx-auto">
+<!-- Page Header -->
+<div class="mb-8 flex justify-between items-end">
+<div>
+<h2 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Ayarlar</h2>
+<p class="text-slate-500 mt-1">Sistem ve profil tercihlerinizi buradan yönetebilirsiniz.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-semibold hover:bg-slate-50 transition-colors">İptal</button>
+<button class="px-6 py-2 rounded-lg bg-primary text-white text-sm font-semibold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-colors">Değişiklikleri Kaydet</button>
+</div>
+</div>
+<div class="grid gap-6">
+<!-- Section: User Profile -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person</span>
+<h3 class="font-bold text-slate-800 dark:text-white">Kullanıcı Profili</h3>
+</div>
+<div class="p-6">
+<div class="flex flex-col md:flex-row gap-8 items-start md:items-start"><div class="flex flex-col md:flex-row gap-8 items-center">
+<div class="relative group">
+<img class="w-40 h-40 rounded-xl object-cover ring-4 ring-slate-50 dark:ring-slate-800 shadow-lg" data-alt="Large profile picture of a male manager" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRddNTz0UH7h6VepQqDnOMtG-EPNjVnnbLyFEWWFjYG1HYeX1--erSIilWEQLBPjKEGwYCB7C9bf-u4bTsKsuSiw762GfdaWgbW1H4NtUR3-y2iPvZY13dx0uEDDscf4FVDW8StGlYEiS2IKd-ouyI0hdQZCDMYcS6S1Y2Y4gpTShI5Liw9HoCBLue1Gcbw7siHUf_oTiBaCFvGoh4eNNgYt834Xeypv0L2Eu9j5Y0PswWzqdlRWS1rrotQSC7-uioXL13B6Yk77dE"/>
+<div class="absolute inset-0 bg-black/40 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-white text-3xl">edit</span>
+</div>
+</div>
+<div class="flex-1 space-y-4">
+<div class="flex flex-wrap gap-3">
+<button class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">upload</span>
+Fotoğraf Değiştir
+</button>
+<button class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-red-600 text-sm font-semibold rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">delete</span>
+Kaldır
+</button>
+</div>
+<p class="text-xs text-slate-500 leading-relaxed">
+PNG, JPG veya WEBP (Max 2MB).<br/>
+Önerilen boyut 400x400px.
+</p>
+</div>
+</div>
+<div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 w-full mt-8 md:mt-0">
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase">Ad Soyad</label>
+<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary text-sm" type="text" value="Ahmet Yılmaz"/>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase">E-posta Adresi</label>
+<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary text-sm" type="email" value="ahmet.yilmaz@fabrika.com"/>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase">Rol</label>
+<input class="w-full rounded-lg border-slate-200 bg-slate-50 dark:bg-slate-800/50 dark:border-slate-700 text-slate-500 text-sm" disabled="" type="text" value="Fabrika Müdürü"/>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase">Telefon</label>
+<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary text-sm" type="text" value="+90 (555) 000 00 00"/>
+</div>
+</div></div>
+</div>
+</section>
+<!-- Section: Security -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">security</span>
+<h3 class="font-bold text-slate-800 dark:text-white">Güvenlik</h3>
+</div>
+<div class="p-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-tight">Mevcut Şifre</label>
+<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary text-sm" placeholder="••••••••" type="password"/>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-tight">Yeni Şifre</label>
+<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary text-sm" placeholder="••••••••" type="password"/>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-tight">Şifreyi Onayla</label>
+<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary text-sm" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<p class="mt-4 text-xs text-slate-400">Şifreniz en az 8 karakter uzunluğunda olmalı ve en az bir büyük harf ile bir rakam içermelidir.</p>
+</div>
+</section>
+<!-- Section: System Preferences -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">language</span>
+<h3 class="font-bold text-slate-800 dark:text-white">Sistem Tercihleri</h3>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-tight">Dil Seçimi</label>
+<select class="w-full rounded-lg border-slate-200 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary text-sm">
+<option selected="">Türkçe (TR)</option>
+<option>English (US)</option>
+<option>Deutsch (DE)</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-tight">Para Birimi</label>
+<select class="w-full rounded-lg border-slate-200 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary text-sm">
+<option selected="">TRY (₺)</option>
+<option>USD ($)</option>
+<option>EUR (€)</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase tracking-tight">Zaman Dilimi</label>
+<select class="w-full rounded-lg border-slate-200 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary text-sm">
+<option selected="">(UTC+03:00) İstanbul</option>
+<option>(UTC+01:00) Berlin</option>
+<option>(UTC+00:00) London</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Section: Notification Settings -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm mb-12">
+<div class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">notifications</span>
+<h3 class="font-bold text-slate-800 dark:text-white">Bildirim Ayarları</h3>
+</div>
+<div class="p-6 space-y-4">
+<!-- Toggle Item -->
+<div class="flex items-center justify-between py-2">
+<div>
+<p class="text-sm font-semibold text-slate-800 dark:text-white">E-posta Bildirimleri</p>
+<p class="text-xs text-slate-500">Sipariş ve stok güncellemelerini e-posta ile al.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer custom-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<hr class="border-slate-100 dark:border-slate-800"/>
+<!-- Toggle Item -->
+<div class="flex items-center justify-between py-2">
+<div>
+<p class="text-sm font-semibold text-slate-800 dark:text-white">SMS Bildirimleri</p>
+<p class="text-xs text-slate-500">Kritik hatalar ve acil durum uyarılarını SMS ile al.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer custom-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<hr class="border-slate-100 dark:border-slate-800"/>
+<!-- Toggle Item -->
+<div class="flex items-center justify-between py-2">
+<div>
+<p class="text-sm font-semibold text-slate-800 dark:text-white">Uygulama İçi Bildirimler</p>
+<p class="text-xs text-slate-500">Sistem içindeki tüm bildirimleri panel üzerinden takip et.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer custom-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stok Raporu - Envanter Yönetim Sistemi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a227f",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121320",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header / Navigation -->
+<header class="flex items-center justify-between border-b border-solid border-slate-200 bg-white px-6 md:px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined">factory</span>
+</div>
+<h2 class="text-primary text-lg font-bold leading-tight tracking-tight">StokPanel</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-600 hover:text-primary text-sm font-semibold transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-1" href="#">Stok Raporu</a>
+<a class="text-slate-600 hover:text-primary text-sm font-semibold transition-colors" href="#">Depo</a>
+<a class="text-slate-600 hover:text-primary text-sm font-semibold transition-colors" href="#">Sevkiyat</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center bg-slate-100 rounded-lg px-3 py-1.5 border border-slate-200">
+<span class="material-symbols-outlined text-slate-400 text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-40 md:w-60 placeholder:text-slate-400" placeholder="Ürün veya SKU ara..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="relative p-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 size-2 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<button class="p-2 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="h-8 w-px bg-slate-200 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-slate-900">Ahmet Yılmaz</p>
+<p class="text-[10px] font-medium text-slate-500 uppercase tracking-wider">Depo Müdürü</p>
+</div>
+<div class="size-10 rounded-full bg-primary/10 border-2 border-primary/20 flex items-center justify-center overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="User profile avatar of the manager" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk1umQzcacGvygZEDD6h0hw42niSMx0ZqY6WgH2fpU2V4FoDnLo6bmo70lRf85pqLamlsDbgSfkpFjJavHeExwMHN3eG5qi4Em0LrxUabgkwXR9vcv0h-LmqxpXiKXKxGoHr6BO8vM8OzJwKKizImddRZuMjLijnVTuCQmKihvLjekn8-xWPynskNfby1ptNBZHG-LEraNMgP3fRmVnTFWb5A846OVf4l-3jsGsDAsvt7f1E8U1CrN_4ZrsmwxlCTVZ_4xvmim7zQ_"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-7xl mx-auto w-full p-4 md:p-8 space-y-8">
+<!-- Page Title and Export Actions -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="space-y-1">
+<h1 class="text-3xl font-black text-slate-900 tracking-tight">Stok Raporu</h1>
+<p class="text-slate-500 font-medium">Fabrika envanter durumuna genel bakış ve operasyonel analiz.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg text-slate-700 text-sm font-bold hover:bg-slate-50 transition-all">
+<span class="material-symbols-outlined text-xl">description</span>
+                        Excel'e Aktar
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-xl">picture_as_pdf</span>
+                        PDF Olarak İndir
+                    </button>
+</div>
+</div>
+<!-- Filters Section -->
+<div class="bg-white border border-slate-200 rounded-xl p-4 flex flex-wrap items-center gap-4">
+<div class="flex items-center gap-2 min-w-max">
+<span class="material-symbols-outlined text-slate-400">calendar_month</span>
+<div class="flex items-center bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 cursor-pointer hover:bg-slate-100 transition-all">
+<span class="text-sm font-semibold text-slate-700">01 Eki 2023 - 31 Eki 2023</span>
+<span class="material-symbols-outlined text-slate-400 ml-2">expand_more</span>
+</div>
+</div>
+<div class="h-6 w-px bg-slate-200 hidden md:block"></div>
+<select class="bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-sm font-semibold text-slate-700 focus:ring-primary focus:border-primary">
+<option>Tüm Kategoriler</option>
+<option>Hammadde</option>
+<option>Yarı Mamul</option>
+<option>Bitmiş Ürün</option>
+</select>
+<select class="bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-sm font-semibold text-slate-700 focus:ring-primary focus:border-primary">
+<option>Tüm Depolar</option>
+<option>Merkez Depo</option>
+<option>Bursa Lojistik</option>
+<option>Antrepo-A</option>
+</select>
+<div class="flex-1"></div>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-lg">filter_alt_off</span>
+                    Filtreleri Temizle
+                </button>
+</div>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden group">
+<div class="absolute right-[-20px] top-[-20px] size-24 bg-primary/5 rounded-full group-hover:scale-110 transition-transform"></div>
+<div class="flex items-center gap-4 mb-4">
+<div class="size-12 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">account_balance_wallet</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-500 uppercase tracking-wider">Toplam Stok Değeri</p>
+<h3 class="text-2xl font-black text-slate-900 leading-none">₺4.280.500</h3>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-emerald-600 text-sm font-bold flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12%
+                        </span>
+<span class="text-slate-400 text-xs font-medium">Geçen aya göre</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden group">
+<div class="absolute right-[-20px] top-[-20px] size-24 bg-blue-500/5 rounded-full group-hover:scale-110 transition-transform"></div>
+<div class="flex items-center gap-4 mb-4">
+<div class="size-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">sync_alt</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-500 uppercase tracking-wider">Stok Devir Hızı</p>
+<h3 class="text-2xl font-black text-slate-900 leading-none">4.2x</h3>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-emerald-600 text-sm font-bold flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span> +0.5%
+                        </span>
+<span class="text-slate-400 text-xs font-medium">Endüstri ortalamasının üzerinde</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden group">
+<div class="absolute right-[-20px] top-[-20px] size-24 bg-amber-500/5 rounded-full group-hover:scale-110 transition-transform"></div>
+<div class="flex items-center gap-4 mb-4">
+<div class="size-12 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">fact_check</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-500 uppercase tracking-wider">Stok Doğruluk Oranı</p>
+<h3 class="text-2xl font-black text-slate-900 leading-none">%98.5</h3>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-red-500 text-sm font-bold flex items-center">
+<span class="material-symbols-outlined text-sm">trending_down</span> -0.2%
+                        </span>
+<span class="text-slate-400 text-xs font-medium">Son sayım verisi</span>
+</div>
+</div>
+</div>
+<!-- Charts Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Line Chart -->
+<div class="lg:col-span-2 bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-lg font-bold text-slate-900">Zaman İçinde Stok Seviyeleri</h3>
+<p class="text-sm text-slate-500">Son 30 günlük genel envanter trendi</p>
+</div>
+<div class="flex items-center gap-4 text-xs font-bold text-slate-500">
+<div class="flex items-center gap-1.5">
+<span class="size-3 rounded-full bg-primary"></span> Giriş
+                            </div>
+<div class="flex items-center gap-1.5">
+<span class="size-3 rounded-full bg-blue-300"></span> Çıkış
+                            </div>
+</div>
+</div>
+<div class="h-64 flex items-end justify-between gap-1 relative pt-4">
+<!-- Simulated Chart Bars/Lines with Tailwind -->
+<div class="absolute inset-0 border-b border-slate-100 flex flex-col justify-between pointer-events-none">
+<div class="border-b border-slate-100 w-full h-0"></div>
+<div class="border-b border-slate-100 w-full h-0"></div>
+<div class="border-b border-slate-100 w-full h-0"></div>
+<div class="border-b border-slate-100 w-full h-0"></div>
+</div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 transition-all rounded-t h-[40%]"></div>
+<div class="flex-1 bg-primary/30 hover:bg-primary/50 transition-all rounded-t h-[55%]"></div>
+<div class="flex-1 bg-primary/40 hover:bg-primary/60 transition-all rounded-t h-[45%]"></div>
+<div class="flex-1 bg-primary hover:bg-primary/90 transition-all rounded-t h-[70%]"></div>
+<div class="flex-1 bg-primary/50 hover:bg-primary/70 transition-all rounded-t h-[60%]"></div>
+<div class="flex-1 bg-primary/60 hover:bg-primary/80 transition-all rounded-t h-[80%]"></div>
+<div class="flex-1 bg-primary/40 hover:bg-primary/60 transition-all rounded-t h-[50%]"></div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/40 transition-all rounded-t h-[35%]"></div>
+<div class="flex-1 bg-primary/30 hover:bg-primary/50 transition-all rounded-t h-[65%]"></div>
+<div class="flex-1 bg-primary/80 hover:bg-primary/90 transition-all rounded-t h-[90%]"></div>
+<div class="flex-1 bg-primary hover:bg-primary/90 transition-all rounded-t h-[85%]"></div>
+<div class="flex-1 bg-primary/40 hover:bg-primary/60 transition-all rounded-t h-[40%]"></div>
+</div>
+<div class="flex justify-between mt-4 px-1 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
+<span>01 Eki</span>
+<span>07 Eki</span>
+<span>14 Eki</span>
+<span>21 Eki</span>
+<span>28 Eki</span>
+</div>
+</div>
+<!-- Pie Chart -->
+<div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+<h3 class="text-lg font-bold text-slate-900 mb-1">Stok Dağılımı</h3>
+<p class="text-sm text-slate-500 mb-8">Kategorilere göre hacim dağılımı</p>
+<div class="relative size-48 mx-auto mb-8">
+<!-- SVG Simulated Pie Chart -->
+<svg class="size-full -rotate-90" viewbox="0 0 32 32">
+<circle cx="16" cy="16" fill="transparent" r="16" stroke="#1a227f" stroke-dasharray="45 100" stroke-width="32"></circle>
+<circle cx="16" cy="16" fill="transparent" r="16" stroke="#3b82f6" stroke-dasharray="30 100" stroke-dashoffset="-45" stroke-width="32"></circle>
+<circle cx="16" cy="16" fill="transparent" r="16" stroke="#94a3b8" stroke-dasharray="25 100" stroke-dashoffset="-75" stroke-width="32"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="size-24 rounded-full bg-white flex flex-col items-center justify-center shadow-inner">
+<span class="text-xs font-bold text-slate-400 uppercase">Toplam</span>
+<span class="text-lg font-black text-slate-900">14.2k</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="size-3 rounded bg-primary"></span>
+<span class="text-sm font-semibold text-slate-600">Hammadde</span>
+</div>
+<span class="text-sm font-bold text-slate-900">45%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="size-3 rounded bg-blue-500"></span>
+<span class="text-sm font-semibold text-slate-600">Bitmiş Ürün</span>
+</div>
+<span class="text-sm font-bold text-slate-900">30%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="size-3 rounded bg-slate-400"></span>
+<span class="text-sm font-semibold text-slate-600">Yarı Mamul</span>
+</div>
+<span class="text-sm font-bold text-slate-900">25%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+<div class="p-6 border-b border-slate-100 flex items-center justify-between">
+<div>
+<h3 class="text-lg font-bold text-slate-900">En Çok Hareket Gören Ürünler</h3>
+<p class="text-sm text-slate-500">Son 30 günün en yoğun operasyonları</p>
+</div>
+<button class="text-primary text-sm font-bold hover:underline">Hepsini Gör</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-50">
+<tr>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Ürün Adı</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">SKU</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Hareket</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Miktar Değişimi</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Kalan Miktar</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Durum</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-slate-100 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-sm">inventory_2</span>
+</div>
+<span class="text-sm font-bold text-slate-900">Çelik Rulo - A102</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-slate-500">ST-00492</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700">
+<span class="material-symbols-outlined text-xs mr-1">south_west</span> Giriş
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900">+1,200 birim</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900">4,500 kg</td>
+<td class="px-6 py-4">
+<div class="w-24 h-2 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[75%]"></div>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-slate-100 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-sm">inventory_2</span>
+</div>
+<span class="text-sm font-bold text-slate-900">Alüminyum Panel</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-slate-500">AL-00812</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-700">
+<span class="material-symbols-outlined text-xs mr-1">north_east</span> Çıkış
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900">-450 birim</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900">820 adet</td>
+<td class="px-6 py-4">
+<div class="w-24 h-2 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 w-[30%]"></div>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-slate-100 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-sm">inventory_2</span>
+</div>
+<span class="text-sm font-bold text-slate-900">Endüstriyel Boya - Gri</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-slate-500">CH-00122</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-700">
+<span class="material-symbols-outlined text-xs mr-1">north_east</span> Çıkış
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900">-120 lt</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900">45 lt</td>
+<td class="px-6 py-4">
+<div class="w-24 h-2 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-red-500 w-[10%]"></div>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-slate-100 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-sm">inventory_2</span>
+</div>
+<span class="text-sm font-bold text-slate-900">Polimer Hammadde</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-slate-500">PH-00554</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700">
+<span class="material-symbols-outlined text-xs mr-1">south_west</span> Giriş
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900">+3,000 birim</td>
+<td class="px-6 py-4 text-sm font-bold text-slate-900">12,500 kg</td>
+<td class="px-6 py-4">
+<div class="w-24 h-2 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[90%]"></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+<p class="text-xs font-bold text-slate-500">Gösteriliyor: 1-4 / Toplam 42 hareket</p>
+<div class="flex gap-2">
+<button class="size-8 rounded border border-slate-200 bg-white flex items-center justify-center text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="size-8 rounded border border-primary bg-primary flex items-center justify-center text-white font-bold text-xs">1</button>
+<button class="size-8 rounded border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:text-primary transition-colors font-bold text-xs">2</button>
+<button class="size-8 rounded border border-slate-200 bg-white flex items-center justify-center text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-auto py-8 border-t border-slate-200 bg-white text-center">
+<p class="text-sm font-medium text-slate-400">© 2023 StokPanel Endüstriyel Envanter Sistemleri. Tüm hakları saklıdır.</p>
+</footer>
+</div>
+</body></html>

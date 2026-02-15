@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="light" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Yeni Ürün Ekle - Envanter Yönetimi</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<link href="../output.css" rel="stylesheet"/>
+
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0f101a] antialiased">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e9e9f2] bg-white dark:bg-background-dark px-6 md:px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+</div>
+<h2 class="text-[#0f101a] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Envanter Yönetimi</h2>
+</div>
+<div class="flex flex-1 justify-end gap-6 md:gap-8 items-center">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-[#0f101a] dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors" href="dashboard.html">Gösterge Paneli</a>
+<a class="text-primary text-sm font-semibold border-b-2 border-primary py-1" href="#">Stoklar</a>
+<a class="text-[#0f101a] dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors" href="stok_raporu.html">Raporlar</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#e9e9f2] dark:bg-gray-800 text-[#0f101a] dark:text-white hover:bg-gray-200 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#e9e9f2] dark:bg-gray-800 text-[#0f101a] dark:text-white hover:bg-gray-200 transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-8 px-4 md:px-10">
+<div class="layout-content-container flex flex-col max-w-[1000px] flex-1 gap-6">
+<!-- Page Header -->
+<div class="flex flex-wrap justify-between items-center gap-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-sm text-[#555a91] dark:text-gray-400 mb-1">
+<a class="hover:text-primary" href="stok_listesi.html">Stok Listesi</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span>Yeni Ürün</span>
+</div>
+<h1 class="text-[#0f101a] dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">Yeni Ürün Ekle</h1>
+<p class="text-[#555a91] dark:text-gray-400 text-base font-normal">Sisteme yeni bir envanter kalemi tanımlayarak stok takibini başlatın.</p>
+</div>
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-[#e9e9f2] dark:bg-gray-800 text-[#0f101a] dark:text-white text-sm font-bold border border-transparent hover:border-gray-300 transition-all">
+<span class="material-symbols-outlined mr-2 text-sm">arrow_back</span>
+                        Geri Dön
+                    </button>
+</div>
+<!-- Main Form Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Column: Media & Primary Info -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- Card: Basic Information -->
+<div class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-[#e9e9f2] dark:border-gray-800 p-6">
+<div class="flex items-center gap-2 mb-6 text-primary">
+<span class="material-symbols-outlined">info</span>
+<h3 class="text-lg font-bold text-[#0f101a] dark:text-white">Temel Bilgiler</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-[#0f101a] dark:text-gray-200">Ürün Adı <span class="text-red-500">*</span></label>
+<input class="form-input flex w-full rounded-lg border-[#d2d4e5] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0f101a] dark:text-white h-12 px-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="Örn: Çelik Rulman 6205" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-[#0f101a] dark:text-gray-200">SKU / Stok Kodu <span class="text-red-500">*</span></label>
+<input class="form-input flex w-full rounded-lg border-[#d2d4e5] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0f101a] dark:text-white h-12 px-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="Örn: CR-6205-A1" type="text"/>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-sm font-semibold text-[#0f101a] dark:text-gray-200">Kategori</label>
+<select class="form-select flex w-full rounded-lg border-[#d2d4e5] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0f101a] dark:text-white h-12 px-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+<option value="">Kategori Seçin</option>
+<option value="raw">Hammadde (Raw Material)</option>
+<option value="finished">Mamul (Finished Good)</option>
+<option value="spare">Yedek Parça (Spare Part)</option>
+<option value="semi">Yarı Mamul</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Card: Image Upload -->
+<div class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-[#e9e9f2] dark:border-gray-800 p-6">
+<div class="flex items-center gap-2 mb-4 text-primary">
+<span class="material-symbols-outlined">image</span>
+<h3 class="text-lg font-bold text-[#0f101a] dark:text-white">Ürün Görseli</h3>
+</div>
+<div class="flex flex-col items-center justify-center border-2 border-dashed border-[#d2d4e5] dark:border-gray-700 rounded-xl p-8 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer group">
+<div class="bg-primary/10 rounded-full p-4 mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">cloud_upload</span>
+</div>
+<p class="text-sm font-bold text-[#0f101a] dark:text-white mb-1">Görsel Yüklemek İçin Tıklayın</p>
+<p class="text-xs text-[#555a91] dark:text-gray-400 text-center">PNG, JPG veya WEBP (Max 5MB)<br/>Önerilen boyut: 800x600px</p>
+<input accept="image/*" class="hidden" type="file"/>
+</div>
+</div>
+</div>
+<!-- Right Column: Inventory Details -->
+<div class="flex flex-col gap-6">
+<!-- Card: Stock Details -->
+<div class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-[#e9e9f2] dark:border-gray-800 p-6">
+<div class="flex items-center gap-2 mb-6 text-primary">
+<span class="material-symbols-outlined">inventory</span>
+<h3 class="text-lg font-bold text-[#0f101a] dark:text-white">Stok Detayları</h3>
+</div>
+<div class="flex flex-col gap-5">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-[#0f101a] dark:text-gray-200">Birim</label>
+<select class="form-select flex w-full rounded-lg border-[#d2d4e5] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0f101a] dark:text-white h-12 px-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+<option value="piece">Adet (Piece)</option>
+<option value="kg">Kilogram (KG)</option>
+<option value="liter">Litre (Liter)</option>
+<option value="meter">Metre (Meter)</option>
+<option value="set">Set</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-[#0f101a] dark:text-gray-200">Başlangıç Stok Miktarı</label>
+<input class="form-input flex w-full rounded-lg border-[#d2d4e5] dark:border-gray-700 bg-white dark:bg-gray-800 text-[#0f101a] dark:text-white h-12 px-4 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" min="0" placeholder="0" type="number"/>
+</div>
+<div class="flex flex-col gap-2 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
+<div class="flex items-center gap-2 mb-1 text-amber-700 dark:text-amber-400">
+<span class="material-symbols-outlined text-sm font-bold">warning</span>
+<label class="text-sm font-bold">Kritik Stok Eşiği</label>
+</div>
+<input class="form-input flex w-full rounded-lg border-amber-200 dark:border-amber-800 bg-white dark:bg-gray-800 text-[#0f101a] dark:text-white h-10 px-4 focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all" placeholder="Uyarı eşiği girin" type="number"/>
+<p class="text-[10px] text-amber-600 dark:text-amber-500 mt-1 italic">Stok bu miktarın altına düştüğünde sistem otomatik uyarı verecektir.</p>
+</div>
+</div>
+</div>
+<!-- Card: Summary Info (Optional/Informative) -->
+<div class="bg-primary/5 dark:bg-primary/10 rounded-xl p-6 border border-primary/10">
+<h4 class="text-primary font-bold text-sm mb-3">Bilgilendirme</h4>
+<ul class="flex flex-col gap-2">
+<li class="flex items-start gap-2 text-xs text-[#555a91] dark:text-gray-400">
+<span class="material-symbols-outlined text-sm mt-0.5">check_circle</span>
+<span>Girdiğiniz veriler gerçek zamanlı olarak tüm şubelerde güncellenir.</span>
+</li>
+<li class="flex items-start gap-2 text-xs text-[#555a91] dark:text-gray-400">
+<span class="material-symbols-outlined text-sm mt-0.5">check_circle</span>
+<span>SKU kodu sistemde benzersiz olmalıdır.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Sticky Action Footer -->
+<div class="mt-4 flex items-center justify-end gap-3 p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-[#e9e9f2] dark:border-gray-800">
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 border border-[#d2d4e5] dark:border-gray-700 text-[#0f101a] dark:text-white text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                        Vazgeç
+                    </button>
+<button class="flex min-w-[160px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined mr-2">save</span>
+                        Ürünü Kaydet
+                    </button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="py-6 px-10 text-center border-t border-[#e9e9f2] dark:border-gray-800">
+<p class="text-xs text-[#555a91] dark:text-gray-500">© 2024 Envanter Yönetim Paneli - Tüm Hakları Saklıdır.</p>
+</footer>
+</div>
+</div>
+</body></html>

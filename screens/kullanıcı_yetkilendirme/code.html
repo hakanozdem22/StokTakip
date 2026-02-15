@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kullanıcı Yetkilendirme | Depo Kontrol Paneli</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a227f",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121320",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header / TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary dark:text-primary/90">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">Depo Kontrol Paneli</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Stok Yönetimi</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Siparişler</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Raporlar</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-1.5 border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-slate-500 text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 placeholder:text-slate-500" placeholder="Ara..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center justify-center size-10 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center size-10 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="flex items-center gap-3 pl-2 border-l border-slate-200 dark:border-slate-700">
+<div class="text-right hidden lg:block">
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Admin User</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Yönetici</p>
+</div>
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center border-2 border-primary/20 overflow-hidden">
+<img alt="Profil Resmi" class="size-full object-cover" data-alt="System administrator profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7q9-Np_RZgyhkYTKafmosUAS3HPy3yasOKNiH2pZxwaapH4sa9xhREoR-Kdj-LjrV4-0s_CFaKoT_lWVZwrEn3CphHjFLo24-2WfUa2QApFML56yj-GfnaPDhlCvlIsNyYCyA27bLrRu_u66r1Z7Q2nmNko_mbDIZ_S8IWradPE8YiObH8cGXn3ofT20X3v8cjK5PxB2QPGEWKRJWjOhBXXZ6qhR3TLi7DMRtLDG3l5ZzWOGiA3d9Ap4l12I-K6i8R-ix61NX48eq"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex flex-1">
+<!-- Sidebar -->
+<aside class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hidden lg:flex flex-col p-4 gap-6">
+<div>
+<h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 px-3">Menü</h3>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Genel Bakış</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">inventory</span>
+<span class="text-sm font-medium">Envanter</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary border border-primary/20 transition-all" href="#">
+<span class="material-symbols-outlined">manage_accounts</span>
+<span class="text-sm font-semibold">Kullanıcılar</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="text-sm font-medium">Güvenlik Günlüğü</span>
+</a>
+</nav>
+</div>
+<div>
+<h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 px-3">Sistem</h3>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">tune</span>
+<span class="text-sm font-medium">Genel Ayarlar</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">help_center</span>
+<span class="text-sm font-medium">Yardım &amp; Destek</span>
+</a>
+</nav>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 bg-background-light dark:bg-background-dark p-6 md:p-8 overflow-y-auto">
+<!-- Page Header -->
+<div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+<div>
+<h1 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">Kullanıcı Yetkilendirme</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Sistem erişimlerini ve kullanıcı rollerini merkezi olarak yönetin.</p>
+</div>
+<button class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-lg shadow-primary/20 transition-all">
+<span class="material-symbols-outlined text-lg">person_add</span>
+                        Yeni Kullanıcı Ekle
+                    </button>
+</div>
+<!-- Tabs -->
+<div class="mb-6">
+<div class="flex border-b border-slate-200 dark:border-slate-800 gap-8">
+<button class="flex items-center gap-2 border-b-2 border-primary text-primary pb-3 px-1 text-sm font-bold tracking-wide">
+<span class="material-symbols-outlined text-xl">group</span>
+                            Kullanıcı Listesi
+                        </button>
+<button class="flex items-center gap-2 border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 pb-3 px-1 text-sm font-medium transition-all">
+<span class="material-symbols-outlined text-xl">security</span>
+                            Rol Yetkileri
+                        </button>
+</div>
+</div>
+<!-- User Table Section -->
+<section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden mb-12">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Kullanıcı Adı</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Rol</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Durum</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Son Giriş</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 text-right">İşlemler</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xs">AY</div>
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Ahmet Yılmaz</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">Yönetici</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+<span class="size-1.5 rounded-full bg-emerald-500"></span>
+                                            Aktif
+                                        </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">12.10.2023 14:30</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xs">MD</div>
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Mehmet Demir</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-600 border border-indigo-100">Depo Sorumlusu</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+<span class="size-1.5 rounded-full bg-emerald-500"></span>
+                                            Aktif
+                                        </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">11.10.2023 09:15</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-amber-100 flex items-center justify-center text-amber-700 font-bold text-xs">AK</div>
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Ayşe Kaya</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">Rapor Görüntüleyici</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+<span class="size-1.5 rounded-full bg-slate-400"></span>
+                                            Pasif
+                                        </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">05.10.2023 16:45</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-1.5 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Role Permissions Section -->
+<div class="mb-8">
+<h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">rule</span>
+                        Rol Bazlı Erişim İzinleri
+                    </h2>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Role Selector Sidebar -->
+<div class="lg:col-span-3 space-y-2">
+<button class="w-full text-left px-4 py-3 rounded-lg bg-primary text-white font-bold shadow-md shadow-primary/20 transition-all">
+                                Yönetici
+                            </button>
+<button class="w-full text-left px-4 py-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-semibold transition-all">
+                                Depo Sorumlusu
+                            </button>
+<button class="w-full text-left px-4 py-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 font-semibold transition-all">
+                                Rapor Görüntüleyici
+                            </button>
+<button class="w-full text-left px-4 py-3 rounded-lg border-2 border-dashed border-slate-300 dark:border-slate-700 text-slate-400 dark:text-slate-500 flex items-center justify-center gap-2 hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined">add</span>
+                                Yeni Rol Tanımla
+                            </button>
+</div>
+<!-- Permissions Grid -->
+<div class="lg:col-span-9 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6">
+<div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white">Yönetici Yetkileri</h3>
+<p class="text-sm text-slate-500">Bu rol için tüm sistem modüllerine erişim tanımlanmıştır.</p>
+</div>
+<button class="bg-primary/10 text-primary px-4 py-2 rounded-lg text-sm font-bold hover:bg-primary hover:text-white transition-all">
+                                    Değişiklikleri Kaydet
+                                </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+<!-- Stok Management Permissions -->
+<div>
+<h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">inventory_2</span>
+                                        Stok Yönetimi
+                                    </h4>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Stok Görüntüleme</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Stok Düzenleme / Ekleme</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Envanter Sayımı</span>
+</label>
+</div>
+</div>
+<!-- Order Management Permissions -->
+<div>
+<h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">local_shipping</span>
+                                        Siparişler
+                                    </h4>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Sipariş Oluşturma</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Sipariş İptali</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Sipariş Onaylama</span>
+</label>
+</div>
+</div>
+<!-- Reporting Permissions -->
+<div>
+<h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">bar_chart</span>
+                                        Raporlama
+                                    </h4>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Rapor Görüntüleme</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Rapor Çıktısı Alma (PDF/Excel)</span>
+</label>
+</div>
+</div>
+<!-- User Management Permissions (Self) -->
+<div>
+<h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">admin_panel_settings</span>
+                                        Sistem Yönetimi
+                                    </h4>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Kullanıcı Ekleme / Silme</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Rol Tanımlama</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer Info -->
+<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-4 px-8 flex justify-between items-center text-xs text-slate-500">
+<p>© 2023 Endüstriyel Panel v2.4.0. Tüm Hakları Saklıdır.</p>
+<div class="flex gap-4">
+<a class="hover:text-primary" href="#">Kullanım Koşulları</a>
+<a class="hover:text-primary" href="#">Gizlilik Politikası</a>
+</div>
+</footer>
+</div>
+</body></html>

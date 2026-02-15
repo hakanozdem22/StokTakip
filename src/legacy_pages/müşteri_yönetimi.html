@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Endüstriyel Sistem - Müşteri Yönetimi</title>
+<link href="../output.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-white dark:bg-slate-900 border-r border-primary/10 flex flex-col h-full">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary text-white p-2 rounded-lg">
+<span class="material-symbols-outlined">factory</span>
+</div>
+<div>
+<h1 class="text-primary font-bold text-lg leading-none">IndusSys</h1>
+<p class="text-xs text-slate-500 font-medium">Admin Paneli</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-primary/5 rounded-lg transition-colors group" href="dashboard.html">
+<span class="material-symbols-outlined text-[22px]">dashboard</span>
+<span class="text-sm font-medium">Gösterge Paneli</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-primary/5 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">inventory_2</span>
+<span class="text-sm font-medium">Envanter</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-primary/5 rounded-lg transition-colors" href="sipariş_yönetimi.html">
+<span class="material-symbols-outlined text-[22px]">shopping_cart</span>
+<span class="text-sm font-medium">Siparişler</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 bg-primary/10 text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px] fill-current">group</span>
+<span class="text-sm font-semibold">Müşteri Yönetimi</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-primary/5 rounded-lg transition-colors" href="tedarikçi_yönetimi.html">
+<span class="material-symbols-outlined text-[22px]">local_shipping</span>
+<span class="text-sm font-medium">Tedarikçiler</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-primary/5 rounded-lg transition-colors" href="stok_raporu.html">
+<span class="material-symbols-outlined text-[22px]">bar_chart</span>
+<span class="text-sm font-medium">Raporlar</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-100">
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-primary/5 rounded-lg transition-colors" href="ayarlar.html">
+<span class="material-symbols-outlined text-[22px]">settings</span>
+<span class="text-sm font-medium">Ayarlar</span>
+</a>
+<div class="mt-4 flex items-center gap-3 px-3 py-2 bg-slate-50 rounded-xl">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs" data-alt="User profile avatar placeholder">JD</div>
+<div class="flex-1 overflow-hidden">
+<p class="text-xs font-bold text-slate-900 truncate">Mert Yılmaz</p>
+<p class="text-[10px] text-slate-500 truncate">Operasyon Müdürü</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto flex flex-col">
+<!-- Top Bar -->
+<header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 sticky top-0 z-10">
+<div class="flex items-center gap-4 flex-1">
+<h2 class="text-xl font-bold text-slate-800">Müşteri Yönetimi</h2>
+<div class="max-w-md w-full ml-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-100 border-transparent rounded-lg focus:bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all" placeholder="Müşteri adı, yetkili veya sektör ara..." type="text"/>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-lg relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 hover:bg-primary/90 transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">add</span>
+                        Yeni Müşteri Ekle
+                    </button>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<!-- Summary Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500">Toplam Müşteri</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-2xl font-bold text-slate-900">1,284</h3>
+<span class="text-xs font-bold text-green-600">+12%</span>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center text-green-600">
+<span class="material-symbols-outlined">person_check</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500">Aktif Müşteriler</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-2xl font-bold text-slate-900">1,150</h3>
+<span class="text-xs font-bold text-green-600">+5%</span>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center text-amber-600">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500">Toplam Alacak</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-2xl font-bold text-slate-900">₺450.200</h3>
+<span class="text-xs font-bold text-red-600">-2%</span>
+</div>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500">Son 30 Günlük Satış</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-2xl font-bold text-slate-900">₺85.400</h3>
+<span class="text-xs font-bold text-green-600">+18%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Data Table -->
+<div class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+<div class="p-6 border-b border-slate-100 flex items-center justify-between">
+<h4 class="font-bold text-slate-800">Müşteri Listesi</h4>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-xs font-semibold text-slate-600 border border-slate-200 rounded hover:bg-slate-50 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span> Filtrele
+                            </button>
+<button class="px-3 py-1.5 text-xs font-semibold text-slate-600 border border-slate-200 rounded hover:bg-slate-50 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">download</span> Dışa Aktar
+                            </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 text-slate-500 uppercase text-[11px] font-bold tracking-wider">
+<th class="px-6 py-4">Müşteri Adı</th>
+<th class="px-6 py-4">Sektör</th>
+<th class="px-6 py-4">İlgili Kişi</th>
+<th class="px-6 py-4">Telefon</th>
+<th class="px-6 py-4">Bakiye</th>
+<th class="px-6 py-4 text-center">Durum</th>
+<th class="px-6 py-4 text-right">İşlemler</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-primary font-bold overflow-hidden" data-alt="Company logo placeholder">
+<span class="material-symbols-outlined text-slate-400">corporate_fare</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 leading-none">ABC Otomotiv Ltd.</p>
+<p class="text-[11px] text-slate-500 mt-1">ID: CUST-8821</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs font-medium text-slate-600 px-2.5 py-1 bg-slate-100 rounded-full">Otomotiv</span>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-slate-700">Ahmet Yılmaz</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-xs text-slate-600">0532 123 45 67</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-bold text-slate-900">₺12.500,00</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-green-100 text-green-700">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                                                AKTİF
+                                            </span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-primary font-bold overflow-hidden" data-alt="Company logo placeholder">
+<span class="material-symbols-outlined text-slate-400">precision_manufacturing</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 leading-none">Tekno Lojistik A.Ş.</p>
+<p class="text-[11px] text-slate-500 mt-1">ID: CUST-7422</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs font-medium text-slate-600 px-2.5 py-1 bg-slate-100 rounded-full">Lojistik</span>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-slate-700">Mehmet Demir</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-xs text-slate-600">0544 987 65 43</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-bold text-slate-900">₺0,00</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-green-100 text-green-700">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                                                AKTİF
+                                            </span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors group border-b border-slate-100">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-primary font-bold overflow-hidden" data-alt="Company logo placeholder">
+<span class="material-symbols-outlined text-slate-400">architecture</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 leading-none">Global İnşaat Sanayi</p>
+<p class="text-[11px] text-slate-500 mt-1">ID: CUST-4410</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs font-medium text-slate-600 px-2.5 py-1 bg-slate-100 rounded-full">İnşaat</span>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-slate-700">Ayşe Kaya</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-xs text-slate-600">0212 555 12 34</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-bold text-red-600">-₺4.200,00</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-100 text-slate-500">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                                                PASİF
+                                            </span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-primary font-bold overflow-hidden" data-alt="Company logo placeholder">
+<span class="material-symbols-outlined text-slate-400">apparel</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 leading-none">Yıldız Tekstil A.Ş.</p>
+<p class="text-[11px] text-slate-500 mt-1">ID: CUST-9011</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs font-medium text-slate-600 px-2.5 py-1 bg-slate-100 rounded-full">Tekstil</span>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-medium text-slate-700">Caner Öz</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-xs text-slate-600">0533 444 22 11</p>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-bold text-slate-900">₺8.900,00</p>
+</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-green-100 text-green-700">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                                                AKTİF
+                                            </span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+<p class="text-sm text-slate-500">
+                            Toplam <span class="font-bold text-slate-800">1,284</span> kayıttan <span class="font-bold text-slate-800">1-10</span> arası gösteriliyor
+                        </p>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 text-slate-400 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-primary bg-primary text-white font-bold text-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 text-slate-600 hover:bg-white text-sm font-medium">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 text-slate-600 hover:bg-white text-sm font-medium">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 text-slate-600 hover:bg-white text-sm font-medium">12</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 text-slate-400 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
