@@ -20,9 +20,12 @@ function createWindow() {
     win.loadURL('http://localhost:3000');
     win.webContents.openDevTools();
   } else {
-    // In production, the renderer files will be in ../renderer/index.html relative to main.js
-    // Adjust path based on build output. Assuming electron-builder copies to resources/app/...
-    win.loadFile(path.join(__dirname, '../renderer/index.html'));
+    // In production, the renderer files are in the dist folder
+    // The main.js is in src/main, but in the built app it might be different.
+    // However, usually with electron-builder, the resources/app folder structure mimics the project.
+    // If main.js is at resources/app/src/main/main.js and dist is at resources/app/dist/index.html
+    // Then the relative path from main.js to index.html is ../../dist/index.html
+    win.loadFile(path.join(__dirname, '../../dist/index.html'));
   }
 }
 

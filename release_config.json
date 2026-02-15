@@ -1,0 +1,8 @@
+{
+    "tag_name": "v1.0.0",
+    "target_commitish": "master",
+    "name": "v1.0.0 Release",
+    "body": "Initial release of StokTakip application.",
+    "draft": false,
+    "prerelease": false
+}
